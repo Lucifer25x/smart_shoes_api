@@ -38,13 +38,6 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
 app.get('/', function(req, res){
   res.end(JSON.stringify({'active': true}))
 })
-//rest api to get all results
-app.get('/users', function (req, res) {
-    connection.query('SELECT * FROM users', function (error, results, fields) {
-        if (error) throw error;
-        res.end(JSON.stringify(results));
-    });
-});
 
 app.get('/users/search/:name', function(req, res){
     connection.query('SELECT * FROM users WHERE name LIKE ?', ['%' + req.params.name + '%'], function (error, results, fields) {
